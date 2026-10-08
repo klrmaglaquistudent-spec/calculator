@@ -5,26 +5,29 @@ function App() {
   const [display, setDisplay] = useState("0");
 
   const press = (value) => {
+    // Clear
     if (value === "C") {
       setDisplay("0");
-    } 
-    else if (value === "MAGLAQUI") {
-      setDisplay("Kurt Liam R. Maglaqui");
-    } 
-    else if (value === "=") {
+      return;
+    }
+
+    // Equal
+    if (value === "=") {
       try {
         const result = eval(display.replace("÷", "/"));
         setDisplay(String(result));
       } catch {
         setDisplay("Error");
       }
-    } 
-    else {
-      if (display === "0" || display === "Error") {
-        setDisplay(value);
-      } else {
-        setDisplay(display + value);
-      }
+
+      return;
+    }
+
+    // Numbers and operators
+    if (display === "0" || display === "Error") {
+      setDisplay(value);
+    } else {
+      setDisplay(display + value);
     }
   };
 
@@ -63,6 +66,8 @@ function App() {
 
         <div className="buttons">
 
+          {/* 7 8 9 ÷ */}
+
           <button
             className="number"
             onClick={() => press("7")}
@@ -91,6 +96,8 @@ function App() {
             ÷
           </button>
 
+
+          {/* 4 5 6 * */}
 
           <button
             className="number"
@@ -121,6 +128,8 @@ function App() {
           </button>
 
 
+          {/* 1 2 3 - */}
+
           <button
             className="number"
             onClick={() => press("1")}
@@ -150,6 +159,8 @@ function App() {
           </button>
 
 
+          {/* C 0 = + */}
+
           <button
             className="clear"
             onClick={() => press("C")}
@@ -178,23 +189,6 @@ function App() {
             +
           </button>
 
-        </div>
-
-
-        {/* SURNAME BUTTON */}
-
-        <button
-          className="surname"
-          onClick={() => press("MAGLAQUI")}
-        >
-          MAGLAQUI
-        </button>
-
-
-        {/* FOOTER */}
-
-        <div className="footer">
-          DA3A • CALCULATOR
         </div>
 
       </div>
